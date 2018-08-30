@@ -40,12 +40,12 @@ auth_test = requests.get("https://oauth.vk.com/token", params={
     "code": code,
 })
 response = auth_test.json()
+access_token = response.get("access_token", None)
 
-if not response.get("access_token"):
+if not access_token:
     print("VK error: {}".format(response.get("error_description")))
     exit(1)
 
-access_token = response.get("access_token")
 with open("access_token.txt", "w") as f:
     f.write(access_token)
 
