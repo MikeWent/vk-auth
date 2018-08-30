@@ -18,7 +18,8 @@ clients = (
     (4580399, "wYavpq94flrP3ERHO4qQ", "Snapster"),
     (3469984, "kc8eckM3jrRj8mHWl9zQ", "Lynt"),
     (3697615, "AlVXZFMUqyrnABp8ncuU", "Windows"),
-    (2037484, "gpfDXet2gdGTsvOs7MbL", "Symbian")
+    (2037484, "gpfDXet2gdGTsvOs7MbL", "Symbian"),
+    (3032107, "NOmHf1JNKONiIG5zPJUu", "BlackBerry")
 )
 
 for n, client in enumerate(clients, start=1):
