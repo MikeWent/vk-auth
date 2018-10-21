@@ -4,10 +4,6 @@ import getpass
 
 import requests
 
-login = input("Enter login (email/phone): ")
-password = getpass.getpass("Enter password: ")
-code = input("2FA-code (leave empty if disabled): ")
-
 clients = (
     (2274003, "hHbZxrka2uZ6jB1inYsH", "Android"),
     (3140623, "VeWdmVclDCtn6ihuP1nt", "iPhone"),
@@ -28,6 +24,10 @@ for n, client in enumerate(clients, start=1):
 selected = int(input("Enter app number: "))-1
 client_id = clients[selected][0]
 client_secret = clients[selected][1]
+
+login = input("Enter login (email/phone): ")
+password = getpass.getpass("Enter password: ")
+code = input("2FA-code (leave empty if disabled): ")
 
 auth_test = requests.get("https://oauth.vk.com/token", params={
     "grant_type": "password",
