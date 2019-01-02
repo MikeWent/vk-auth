@@ -4,6 +4,7 @@ import getpass
 
 import requests
 
+global ACCESS_TOKEN
 
 def authenticate():
     clients = (
@@ -42,25 +43,25 @@ def authenticate():
         "code": code,
     })
     response = auth_test.json()
-    access_token = response.get("access_token", None)
+    ACCESS_TOKEN = response.get("access_token", None)
 
-    if not access_token:
+    if not ACCESS_TOKEN:
         print("VK error: {}".format(response.get("error_description")))
         exit(1)
 
     with open("access_token.txt", "w") as f:
-        f.write(access_token)
+        f.write(ACCESS_TOKEN)
 
     print("Success! Token saved to access_token.txt")
 
 
 try:
     with open("access_token.txt", "r") as f:
-        access_token = f.read().rstrip()
+        ACCESS_TOKEN = f.read().rstrip()
     r = requests.get(
         "https://api.vk.com/method/account.getAppPermissions",
         params={
-            "access_token": access_token,
+            "access_token": ACCESS_TOKEN,
             "v": "5.92"}
     )
     if r.status_code != 200:
