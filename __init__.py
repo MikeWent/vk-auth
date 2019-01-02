@@ -4,6 +4,22 @@ import getpass
 
 import requests
 
+
+try:
+    with open("access_token.txt", "r") as f:
+        access_token = f.read().rstrip()
+    r = requests.get(
+        "https://api.vk.com/method/account.getAppPermissions",
+        params={
+            "access_token": access_token,
+            "v": "5.92"}
+    )
+    if r.status_code == 200:
+        exit(0)
+except FileNotFoundError:
+    pass
+
+
 clients = (
     (2274003, "hHbZxrka2uZ6jB1inYsH", "Android"),
     (3140623, "VeWdmVclDCtn6ihuP1nt", "iPhone"),
